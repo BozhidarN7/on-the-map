@@ -1,4 +1,11 @@
-import React, {StyleSheet, View, Text, TextInput} from 'react-native';
+import React, {
+    StyleSheet,
+    View,
+    Text,
+    TextInput,
+    TouchableHighlight,
+    TouchableOpacity,
+} from 'react-native';
 import {useState} from 'react';
 import Checkbox from 'expo-checkbox';
 
@@ -39,8 +46,17 @@ const RegisterScreen = () => {
                     onValueChange={setAgreeToTerms}
                     color={agreeToTerms ? '#007BC7' : undefined}
                 />
-                <Text>I agree to the terms of service</Text>
+                <Text>
+                    I agree to the
+                    <Text style={styles.termsLink}> terms of service</Text>
+                </Text>
             </View>
+            <TouchableHighlight
+                style={styles.signUpButton}
+                underlayColor="#0582ca"
+                onPress={() => {}}>
+                <Text style={styles.signUpButtonText}>Sign up</Text>
+            </TouchableHighlight>
         </View>
     );
 };
@@ -70,8 +86,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    termsLink: {
+        color: '#007BC7',
+    },
     termsCheckbox: {
         margin: 8,
+    },
+    signUpButton: {
+        backgroundColor: '#009cc7',
+        width: '70%',
+        borderRadius: 15,
+        paddingVertical: 5,
+        marginTop: 10,
+    },
+    signUpButtonText: {
+        textTransform: 'uppercase',
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 20,
     },
 });
 
