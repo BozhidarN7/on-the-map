@@ -2,43 +2,21 @@ import React, {
     StyleSheet,
     View,
     Text,
-    TextInput,
     TouchableHighlight,
-    TouchableOpacity,
 } from 'react-native';
-import {useState} from 'react';
+import { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 
-const RegisterScreen = () => {
+import { Props } from '@app/navigations/AppNavigation';
+import AuthForm from '@app/components/forms/AuthForm';
+
+const RegisterScreen = ({ navigation }: Props) => {
     const [agreeToTerms, setAgreeToTerms] = useState<boolean>(false);
+
     return (
         <View style={styles.formContainer}>
             <Text style={styles.formTitle}>Register</Text>
-            <TextInput
-                style={[styles.inputField]}
-                autoComplete="name"
-                placeholder="First name"
-            />
-            <TextInput
-                style={[styles.inputField]}
-                autoComplete="name-family"
-                placeholder="Last name"
-            />
-            <TextInput
-                style={[styles.inputField]}
-                autoComplete="email"
-                placeholder="Email"
-            />
-            <TextInput
-                style={[styles.inputField]}
-                autoComplete="password"
-                placeholder="Password"
-            />
-            <TextInput
-                style={[styles.inputField]}
-                autoComplete="password"
-                placeholder="Repeat pasrsword"
-            />
+            <AuthForm type="register" />
             <View style={styles.termsSection}>
                 <Checkbox
                     style={styles.termsCheckbox}
@@ -57,6 +35,13 @@ const RegisterScreen = () => {
                 onPress={() => {}}>
                 <Text style={styles.signUpButtonText}>Sign up</Text>
             </TouchableHighlight>
+            <View style={styles.signInContainer}>
+                <Text>Already have an account? </Text>
+                <TouchableHighlight
+                    onPress={() => navigation.navigate('Login')}>
+                    <Text style={styles.signInText}>Sign In.</Text>
+                </TouchableHighlight>
+            </View>
         </View>
     );
 };
@@ -72,22 +57,13 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontWeight: 'bold',
     },
-    inputField: {
-        width: '70%',
-        fontSize: 20,
-        borderWidth: 1,
-        borderRadius: 10,
-        borderColor: '#007bc7',
-        marginTop: 8,
-        marginBottom: 8,
-        paddingLeft: 15,
-    },
     termsSection: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     termsLink: {
         color: '#007BC7',
+        textDecorationLine: 'underline',
     },
     termsCheckbox: {
         margin: 8,
@@ -97,13 +73,20 @@ const styles = StyleSheet.create({
         width: '70%',
         borderRadius: 15,
         paddingVertical: 5,
-        marginTop: 10,
+        marginVertical: 10,
     },
     signUpButtonText: {
         textTransform: 'uppercase',
         color: '#fff',
         textAlign: 'center',
         fontSize: 20,
+    },
+    signInContainer: {
+        flexDirection: 'row',
+    },
+    signInText: {
+        color: '#007BC7',
+        textDecorationLine: 'underline',
     },
 });
 
