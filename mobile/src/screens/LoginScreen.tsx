@@ -10,12 +10,6 @@ const LoginScreen = ({ navigation }: LoginProps) => {
         <View style={styles.formContainer}>
             <Text style={styles.formTitle}>Login</Text>
             <AuthForm type="login" />
-            <TouchableHighlight
-                style={styles.signUpButton}
-                underlayColor="#0582ca"
-                onPress={() => {}}>
-                <Text style={styles.signUpButtonText}>Sign up</Text>
-            </TouchableHighlight>
             <View style={styles.signInContainer}>
                 <Text>Do not have an account? </Text>
                 <TouchableHighlight onPress={() => navigation.navigate('Register')}>
@@ -36,19 +30,6 @@ const styles = StyleSheet.create({
     formTitle: {
         fontSize: 35,
         fontWeight: 'bold',
-    },
-    signUpButton: {
-        backgroundColor: '#009cc7',
-        width: '70%',
-        borderRadius: 15,
-        paddingVertical: 5,
-        marginVertical: 10,
-    },
-    signUpButtonText: {
-        textTransform: 'uppercase',
-        color: '#fff',
-        textAlign: 'center',
-        fontSize: 20,
     },
     signInContainer: {
         flexDirection: 'row',

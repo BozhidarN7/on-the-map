@@ -24,12 +24,6 @@ const RegisterScreen = ({ navigation }: RegisterProps) => {
                     <Text style={styles.termsLink}> terms of service</Text>
                 </Text>
             </View>
-            <TouchableHighlight
-                style={styles.signUpButton}
-                underlayColor="#0582ca"
-                onPress={() => {}}>
-                <Text style={styles.signUpButtonText}>Sign up</Text>
-            </TouchableHighlight>
             <View style={styles.signInContainer}>
                 <Text>Already have an account? </Text>
                 <TouchableHighlight onPress={() => navigation.navigate('Login')}>
@@ -61,19 +55,6 @@ const styles = StyleSheet.create({
     },
     termsCheckbox: {
         margin: 8,
-    },
-    signUpButton: {
-        backgroundColor: '#009cc7',
-        width: '70%',
-        borderRadius: 15,
-        paddingVertical: 5,
-        marginVertical: 10,
-    },
-    signUpButtonText: {
-        textTransform: 'uppercase',
-        color: '#fff',
-        textAlign: 'center',
-        fontSize: 20,
     },
     signInContainer: {
         flexDirection: 'row',

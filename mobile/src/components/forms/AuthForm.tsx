@@ -1,4 +1,5 @@
-import React, { StyleSheet } from 'react-native';
+import React, { StyleSheet, TouchableHighlight, Text } from 'react-native';
+import { useState } from 'react';
 
 import Input from '@app/components/common/Input';
 
@@ -8,37 +9,81 @@ type Props = {
     type: 'login' | 'register';
 };
 
+const initialFormState = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+};
+
 const AuthForm = ({ type }: Props) => {
+    const [formState, setFormState] = useState(initialFormState);
+
+    const isRegisterType = type === AUTH_TYPES.REGISTER;
+
+    const onInputChange = (value: string, name?: string) =>
+        setFormState((prev) => ({ ...prev, ...(name && { [name]: value }) }));
+
+    const handleSignUp = () => {
+        console.log(formState);
+    };
+
+    const handleSignIn = () => [];
+
     return (
         <>
             <Input
-                style={[styles.inputField]}
                 autoComplete="name"
+                name="firstName"
+                onChangeText={onInputChange}
                 placeholder="First name"
                 show={type === AUTH_TYPES.REGISTER ? true : false}
+                style={[styles.inputField]}
+                value={formState.firstName}
             />
             <Input
-                style={[styles.inputField]}
                 autoComplete="name-family"
+                name="lastName"
+                onChangeText={onInputChange}
                 placeholder="Last name"
-                show={type === AUTH_TYPES.REGISTER ? true : false}
+                show={isRegisterType}
+                style={[styles.inputField]}
+                value={formState.lastName}
             />
             <Input
-                style={[styles.inputField]}
                 autoComplete="email"
+                name="email"
+                onChangeText={onInputChange}
                 placeholder="Email"
+                style={[styles.inputField]}
+                value={formState.email}
             />
             <Input
-                style={[styles.inputField]}
                 autoComplete="password"
+                name="password"
+                onChangeText={onInputChange}
                 placeholder="Password"
+                style={[styles.inputField]}
+                value={formState.password}
             />
             <Input
-                style={[styles.inputField]}
                 autoComplete="password"
+                name="repeatPassword"
+                onChangeText={onInputChange}
                 placeholder="Repeat pasrsword"
-                show={type === AUTH_TYPES.REGISTER ? true : false}
+                show={isRegisterType}
+                style={[styles.inputField]}
+                value={formState.repeatPassword}
             />
+            <TouchableHighlight
+                style={styles.signUpButton}
+                underlayColor="#0582ca"
+                onPress={isRegisterType ? handleSignUp : handleSignIn}>
+                <Text style={styles.signUpButtonText}>
+                    {isRegisterType ? 'Sign Up' : 'Sign In'}
+                </Text>
+            </TouchableHighlight>
         </>
     );
 };
@@ -53,6 +98,19 @@ const styles = StyleSheet.create({
         marginTop: 8,
         marginBottom: 8,
         paddingLeft: 15,
+    },
+    signUpButton: {
+        backgroundColor: '#009cc7',
+        width: '70%',
+        borderRadius: 15,
+        paddingVertical: 5,
+        marginVertical: 10,
+    },
+    signUpButtonText: {
+        textTransform: 'uppercase',
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 20,
     },
 });
 

@@ -1,8 +1,6 @@
 import React, { TextInput } from 'react-native';
 
 type Props = {
-    style?: any;
-    placeholder?: string;
     autoComplete:
         | 'birthdate-day'
         | 'birthdate-full'
@@ -42,20 +40,27 @@ type Props = {
         | 'username-new'
         | 'off'
         | undefined;
-    show?: boolean;
     children?: any;
+    name?: string | undefined;
+    onChangeText?: ((text: string, name?: string) => void) | undefined;
+    placeholder?: string;
+    show?: boolean;
+    style?: any;
+    value?: string | undefined;
 };
 
-const Input = ({ style, placeholder, autoComplete, show }: Props) => {
+const Input = ({ autoComplete, name, onChangeText, placeholder, show, style, value }: Props) => {
     if (!show) {
         return null;
     }
 
     return (
         <TextInput
-            style={style}
-            placeholder={placeholder}
             autoComplete={autoComplete}
+            onChangeText={(text) => onChangeText && onChangeText(text, name)}
+            placeholder={placeholder}
+            style={style}
+            value={value}
         />
     );
 };
