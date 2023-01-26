@@ -1,16 +1,11 @@
-import React, {
-    StyleSheet,
-    View,
-    Text,
-    TouchableHighlight,
-} from 'react-native';
+import React, { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 import { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 
-import { Props } from '@app/navigations/AppNavigation';
+import { RegisterProps } from '@app/navigations/AppNavigation';
 import AuthForm from '@app/components/forms/AuthForm';
 
-const RegisterScreen = ({ navigation }: Props) => {
+const RegisterScreen = ({ navigation }: RegisterProps) => {
     const [agreeToTerms, setAgreeToTerms] = useState<boolean>(false);
 
     return (
@@ -37,8 +32,7 @@ const RegisterScreen = ({ navigation }: Props) => {
             </TouchableHighlight>
             <View style={styles.signInContainer}>
                 <Text>Already have an account? </Text>
-                <TouchableHighlight
-                    onPress={() => navigation.navigate('Login')}>
+                <TouchableHighlight onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.signInText}>Sign In.</Text>
                 </TouchableHighlight>
             </View>

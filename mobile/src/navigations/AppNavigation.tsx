@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import {
-    createNativeStackNavigator,
-    NativeStackScreenProps,
-} from '@react-navigation/native-stack';
+import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import MapScreen from '@app/screens/MapScreen';
 import RegisterScreen from '@app/screens/RegisterScreen';
@@ -15,7 +12,8 @@ type RootStackParamList = {
     Login: undefined;
 };
 
-export type Props = NativeStackScreenProps<RootStackParamList, 'Register'>;
+export type RegisterProps = NativeStackScreenProps<RootStackParamList, 'Register'>;
+export type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
