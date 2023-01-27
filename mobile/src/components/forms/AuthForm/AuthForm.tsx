@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Input from '@app/components/common/Input';
 
 import { AUTH_TYPES } from './constants';
+import { useAuth } from '@app/contexts/AuthContext';
 
 type Props = {
     type: 'login' | 'register';
@@ -18,6 +19,7 @@ const initialFormState = {
 };
 
 const AuthForm = ({ type }: Props) => {
+    const { signUp } = useAuth();
     const [formState, setFormState] = useState(initialFormState);
 
     const isRegisterType = type === AUTH_TYPES.REGISTER;
@@ -26,7 +28,7 @@ const AuthForm = ({ type }: Props) => {
         setFormState((prev) => ({ ...prev, ...(name && { [name]: value }) }));
 
     const handleSignUp = () => {
-        console.log(formState);
+        signUp(formState);
     };
 
     const handleSignIn = () => [];

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 
 import { RegisterProps } from '@app/navigations/AppNavigation';
-import AuthForm from '@app/components/forms/AuthForm';
+import AuthForm from '@app/components/forms/AuthForm/AuthForm';
 
 const RegisterScreen = ({ navigation }: RegisterProps) => {
     const [agreeToTerms, setAgreeToTerms] = useState<boolean>(false);

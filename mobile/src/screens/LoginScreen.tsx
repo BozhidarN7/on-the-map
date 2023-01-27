@@ -1,7 +1,7 @@
 import React, { View, StyleSheet, TouchableHighlight } from 'react-native';
 
 import Text from '@app/components/common/Text';
-import AuthForm from '@app/components/forms/AuthForm';
+import AuthForm from '@app/components/forms/AuthForm/AuthForm';
 
 import { LoginProps } from '@app/navigations/AppNavigation';
 
