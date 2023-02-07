@@ -11,8 +11,11 @@
     "noEmit": true,
     "moduleResolution": "node",
     "baseUrl": ".",
+    "types": ["node"],
     "paths": {
-      "@app/*": ["src/*"]
-    }
+      "@app/*": ["src/*"],
+      "@env": ["."]
+    },
+    "typeRoots": ["./src/types"],
   }
 }

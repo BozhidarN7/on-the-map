@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
+import { useMutation } from '@apollo/client';
+
 import { LoginData, RegisterData } from '@app/components/forms/AuthForm/AuthTypes';
+import { CREATE_USER } from '@app/graphql/mutations';
 
 type AuthContextTypes = {
     signIn: (loginData: LoginData) => void;
@@ -15,6 +18,7 @@ type Props = {
 };
 
 const AuthProvider = ({ children }: Props) => {
+    const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
     const signUp = async (registerData: RegisterData) => {
         console.log(registerData);
     };

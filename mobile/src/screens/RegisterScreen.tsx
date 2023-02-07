@@ -1,12 +1,17 @@
 import React, { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 import { useState } from 'react';
+import { useQuery } from '@apollo/client';
 import Checkbox from 'expo-checkbox';
 
 import { RegisterProps } from '@app/navigations/AppNavigation';
 import AuthForm from '@app/components/forms/AuthForm/AuthForm';
+import { GET_BOOKS } from '@app/graphql/queris';
 
 const RegisterScreen = ({ navigation }: RegisterProps) => {
     const [agreeToTerms, setAgreeToTerms] = useState<boolean>(false);
+    const { loading, error, data } = useQuery(GET_BOOKS);
+
+    console.log(data);
 
     return (
         <View style={styles.formContainer}>
