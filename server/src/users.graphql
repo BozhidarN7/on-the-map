@@ -1,19 +1,34 @@
 extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key"])
 
 type Book {
-    title: String
-    author: String
+  title: String
+  author: String
 }
 
 type Query {
-    books: [Book]
+  books: [Book]
 }
 
 type User {
-    email: String!
-    password: String!
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
 }
 
 type Mutation {
-    createUser(email: String!, password: String!): User!
+  register(registerData: RegisterData!): User!
+  login(loginData: LoginData!): User!
+}
+
+input RegisterData {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+}
+
+input LoginData {
+  email: String!
+  password: String!
 }
