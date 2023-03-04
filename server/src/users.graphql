@@ -23,7 +23,6 @@ type Mutation {
 
 input RegisterData {
   email: String!
-  password: String!
   firstName: String!
   lastName: String!
 }

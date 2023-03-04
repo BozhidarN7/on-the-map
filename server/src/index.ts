@@ -26,7 +26,7 @@ const books = [
 
 const resolvers = {
   Query: {
-    books: (_, __, { userTokenId }) => (userTokenId ? books : []),
+    books: (_, __, { user }) => (user ? books : []),
   },
   Mutation,
 };
@@ -38,10 +38,15 @@ const server = new ApolloServer({
 const { url } = await startStandaloneServer(server, {
   context: async ({ req }) => {
     const token = req.headers.authorization || '';
+    if (!token) {
+      return {};
+    }
     const userTokenId = token.split(' ')[1];
-    console.log(userTokenId);
+    const decodedToken = await admin.auth().verifyIdToken(userTokenId);
+    const user = await admin.auth().getUser(decodedToken.uid);
+    console.log(user);
     return {
-      userTokenId,
+      user,
     };
   },
   listen: { port: 4001 },
