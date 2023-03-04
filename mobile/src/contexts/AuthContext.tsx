@@ -1,14 +1,15 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import auth from '@react-native-firebase/auth';
 import { useMutation } from '@apollo/client';
 
 import { LoginData, RegisterData } from '@app/components/forms/AuthForm/AuthTypes';
-import { CREATE_USER } from '@app/graphql/mutations';
+import { REGISTER } from '@app/graphql/mutations';
 
 type AuthContextTypes = {
-  isSignIn: boolean;
+  logout: () => void;
   signIn: (loginData: LoginData) => void;
   signUp: (registerData: RegisterData) => void;
+  userData: any;
 };
 
 const AuthContext = React.createContext<AuthContextTypes>({} as AuthContextTypes);
@@ -20,30 +21,46 @@ type Props = {
 };
 
 const AuthProvider = ({ children }: Props) => {
-  const [isSignIn, setIsSignIn] = useState(false);
+  const [initializing, setInitializing] = useState(true);
+  const [userData, setUserData] = useState();
 
-  const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
+  const [register, { error }] = useMutation(REGISTER);
+  if (error) {
+    console.log('graphq: ', error);
+  }
+  const onAuthStateChanged = useCallback(
+    (user: any) => {
+      setUserData(user);
+      if (initializing) {
+        setInitializing(false);
+      }
+    },
+    [initializing],
+  );
 
   useEffect(() => {
-    if (!loading && data) {
-      setIsSignIn(true);
-    }
-  }, [data, loading]);
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  }, [onAuthStateChanged]);
 
   const signUp = async (registerData: RegisterData) => {
-    const result = await auth().createUserWithEmailAndPassword(
-      registerData.email,
-      registerData.password,
-    );
-    console.log(result);
-    // createUser({ variables: registerData });
+    await auth().createUserWithEmailAndPassword(registerData.email, registerData.password);
+    register({
+      variables: {
+        registerData: { ...registerData, password: undefined, repeatPassword: undefined },
+      },
+    });
   };
 
   const signIn = async (loginData: LoginData) => {
-    console.log(loginData);
+    await auth().signInWithEmailAndPassword(loginData.email, loginData.password);
   };
 
-  const value = { isSignIn, signIn, signUp };
+  const logout = async () => {
+    await auth().signOut();
+  };
+
+  const value = { userData, logout, signIn, signUp };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 

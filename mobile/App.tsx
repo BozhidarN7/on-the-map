@@ -6,13 +6,13 @@ import AuthProvider from '@app/contexts/AuthContext';
 import client from '@app/config/apollo-client-config';
 
 function App() {
-    return (
-        <ApolloProvider client={client}>
-            <AuthProvider>
-                <AppNavigation />
-            </AuthProvider>
-        </ApolloProvider>
-    );
+  return (
+    <ApolloProvider client={client}>
+      <AuthProvider>
+        <AppNavigation />
+      </AuthProvider>
+    </ApolloProvider>
+  );
 }
 
 export default App;

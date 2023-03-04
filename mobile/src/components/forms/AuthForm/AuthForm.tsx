@@ -19,7 +19,7 @@ const initialFormState = {
 };
 
 const AuthForm = ({ type }: Props) => {
-  const { signUp } = useAuth();
+  const { signUp, signIn } = useAuth();
   const [formState, setFormState] = useState(initialFormState);
 
   const isRegisterType = type === AUTH_TYPES.REGISTER;
@@ -31,7 +31,9 @@ const AuthForm = ({ type }: Props) => {
     signUp(formState);
   };
 
-  const handleSignIn = () => [];
+  const handleSignIn = () => {
+    signIn(formState);
+  };
 
   return (
     <>

@@ -6,6 +6,7 @@ import MapScreen from '@app/screens/MapScreen';
 import RegisterScreen from '@app/screens/RegisterScreen';
 import LoginScreen from '@app/screens/LoginScreen';
 import { useAuth } from '@app/contexts/AuthContext';
+import { Button } from 'react-native';
 
 type RootStackParamList = {
   Map: undefined;
@@ -19,13 +20,19 @@ export type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigation = () => {
-  const { isSignIn } = useAuth();
+  const { userData, logout } = useAuth();
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {isSignIn ? (
-          <Stack.Screen name="Map" component={MapScreen} />
+        {userData ? (
+          <Stack.Screen
+            name="Map"
+            component={MapScreen}
+            options={{
+              headerRight: () => <Button onPress={logout} title="Logout" />,
+            }}
+          />
         ) : (
           <>
             <Stack.Screen
