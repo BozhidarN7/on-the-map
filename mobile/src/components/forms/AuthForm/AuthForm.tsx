@@ -1,10 +1,11 @@
-import React, { StyleSheet, TouchableHighlight, Text } from 'react-native';
+import React, { StyleSheet, TouchableHighlight, Text, ToastAndroid } from 'react-native';
 import { useState } from 'react';
 
 import Input from '@app/components/common/Input';
 
 import { AUTH_TYPES } from './constants';
 import { useAuth } from '@app/contexts/AuthContext';
+import Toast from '@app/components/common/Toast/Toast';
 
 type Props = {
   type: 'login' | 'register';
@@ -32,7 +33,10 @@ const AuthForm = ({ type }: Props) => {
   };
 
   const handleSignIn = () => {
-    signIn(formState);
+    // signIn(formState);
+    console.log('here');
+    Toast({ message: 'test', duration: ToastAndroid.SHORT, type: 1, gravity: ToastAndroid.CENTER });
+    // ToastAndroid.show('This is a test toat', ToastAndroid.SHORT);
   };
 
   return (
