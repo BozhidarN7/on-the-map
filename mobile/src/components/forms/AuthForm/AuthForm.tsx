@@ -5,7 +5,7 @@ import Input from '@app/components/common/Input';
 
 import { AUTH_TYPES } from './constants';
 import { useAuth } from '@app/contexts/AuthContext';
-import Toast from '@app/components/common/Toast/Toast';
+import CustomToast from '@app/components/common/Toast/Toast';
 
 type Props = {
   type: 'login' | 'register';
@@ -34,9 +34,7 @@ const AuthForm = ({ type }: Props) => {
 
   const handleSignIn = () => {
     // signIn(formState);
-    console.log('here');
-    Toast({ message: 'test', duration: ToastAndroid.SHORT, type: 1, gravity: ToastAndroid.CENTER });
-    // ToastAndroid.show('This is a test toat', ToastAndroid.SHORT);
+    CustomToast.show('this is custom toat message');
   };
 
   return (

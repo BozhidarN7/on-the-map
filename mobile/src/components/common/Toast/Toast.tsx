@@ -1,28 +1,11 @@
-import { ToastAndroid } from 'react-native';
+import { NativeModules } from 'react-native';
 
-enum ToastType {
-  Simple,
-  Gravity,
-  GravityAndOffset,
-}
+const CustomToastModule = NativeModules.CustomToastModule;
 
-type ToatProps = {
-  duration: number;
-  gravity?: number;
-  message: string;
-  type: ToastType;
+const CustomToast = {
+  show: (message: string) => {
+    CustomToastModule.showToast(message);
+  },
 };
 
-const toast = ({ message, duration, type, gravity }: ToatProps) => {
-  console.log(type);
-
-  if (ToastType.Simple === type) {
-    ToastAndroid.show(message, duration);
-  }
-
-  if (ToastType.Gravity === type) {
-    ToastAndroid.showWithGravity(message, duration, gravity!);
-  }
-};
-
-export default toast;
+export default CustomToast;
