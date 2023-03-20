@@ -1,5 +1,6 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
+import Toast from 'react-native-toast-message';
 
 import AppNavigation from './src/navigations/AppNavigation';
 import AuthProvider from '@app/contexts/AuthContext';
@@ -10,6 +11,7 @@ function App() {
     <ApolloProvider client={client}>
       <AuthProvider>
         <AppNavigation />
+        <Toast />
       </AuthProvider>
     </ApolloProvider>
   );
