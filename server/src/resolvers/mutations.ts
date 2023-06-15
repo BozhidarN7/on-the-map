@@ -6,7 +6,11 @@ const register = async (_, { registerData }) => {
   const collection = db.collection('users');
   const result = await collection.insertOne(registerData);
 
-  return { email: registerData.email, firstName: registerData.firstName, lastName: registerData.lastName };
+  return {
+    email: registerData.email,
+    firstName: registerData.firstName,
+    lastName: registerData.lastName,
+  };
 };
 
 export default {
