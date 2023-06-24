@@ -12,11 +12,7 @@ import client from './config/mongoDB-config';
 import Mutation from './resolvers/mutations';
 
 firebaseConfig();
-for (let i = 0; i < 10; i++) {
-  console.log(i);
-  console.log('test');
-  console.log('second test');
-}
+
 const books = [
   {
     title: 'The Awakening',
