@@ -13,6 +13,8 @@ import Mutation from './resolvers/mutations';
 
 firebaseConfig();
 
+console.log('hre');
+
 const books = [
   {
     title: 'The Awakening',
