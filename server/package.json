@@ -10,7 +10,7 @@
     "start:dev": "nodemon",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
-    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "prettier-format": "prettier --config .prettierrc ./**/*.{ts,js,graphql} --write",
     "prepare": "cd .. && husky install server/.husky"
   },
   "author": "",
