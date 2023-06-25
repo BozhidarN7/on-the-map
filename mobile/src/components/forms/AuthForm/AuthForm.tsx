@@ -1,10 +1,12 @@
-import React, { StyleSheet, TouchableHighlight, Text } from 'react-native';
+import React, { StyleSheet, TouchableHighlight, Text, ToastAndroid } from 'react-native';
 import { useState } from 'react';
 
 import Input from '@app/components/common/Input';
 
 import { AUTH_TYPES } from './constants';
 import { useAuth } from '@app/contexts/AuthContext';
+import CustomToast from '@app/components/common/Toast/Toast';
+import Toast from 'react-native-toast-message';
 
 type Props = {
   type: 'login' | 'register';
@@ -32,7 +34,14 @@ const AuthForm = ({ type }: Props) => {
   };
 
   const handleSignIn = () => {
-    signIn(formState);
+    // signIn(formState);
+    // CustomToast.show('this is custom toat message');
+    Toast.show({
+      type: 'info',
+      text1: 'This is an info message',
+      position: 'top',
+      topOffset: 280,
+    });
   };
 
   return (

@@ -1,20 +1,20 @@
 {
-    "compilerOptions": {
-        "rootDirs": ["src"],
-        "outDir": "dist",
-        "lib": ["es2020"],
-        "target": "es2020",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "types": ["node"],
-        "typeRoots": ["node_modules/@types"]
-    },
-    "hooks": ["copy-files"],
-    "include": ["src/**/*"],
-    "exclude": ["src/**/*.txt"],
-    "ts-node": {
-        "esm": true
-    },
-    "lib": ["esnext"]
+  "compilerOptions": {
+    "rootDirs": ["src"],
+    "outDir": "dist",
+    "lib": ["es2020"],
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types"]
+  },
+  "hooks": ["copy-files"],
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.txt"],
+  "ts-node": {
+    "esm": true
+  },
+  "lib": ["esnext"]
 }
