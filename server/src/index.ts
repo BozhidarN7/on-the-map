@@ -8,7 +8,7 @@ const require = createRequire(import.meta.url);
 require('graphql-import-node');
 const typeDefs = require('./users.graphql');
 import admin, { firebaseConfig } from './config/firebase-config';
-import client from './config/mongoDB-config';
+
 import Mutation from './resolvers/mutations';
 
 firebaseConfig();

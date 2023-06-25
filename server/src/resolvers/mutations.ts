@@ -1,5 +1,5 @@
 import admin from '../config/firebase-config';
-import client from '../config/mongoDB-config';
+import client from '../config/mongodb-config';
 
 const register = async (_, { registerData }) => {
   const db = client.db('on-the-map');
